@@ -7,10 +7,18 @@ import java.util.*;
  */
 public class ExperimentController
 {
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         int input_max = 36;
+        int customer_number = 1000;
         int casino_deposit = 0;
+        int customer_allowance = 500;
+        int eachBet = 20;
         ExperimentController ex = new ExperimentController();
-        Casino casino1 = new Casino(input_max, casino_deposit);
+        CustomerContainer customerContaine = new CustomerContainer(customer_number, customer_allowance,input_max);
+        Casino casino1 = new Casino(input_max, casino_deposit, eachBet);
+        customerContaine.pick();
+        casino1.runSimulation();
+        casino1.payment(customerContaine);
+        System.out.println("deposit: " + casino1.deposit);
     }
 }

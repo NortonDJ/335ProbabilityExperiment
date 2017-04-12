@@ -16,9 +16,9 @@ public class RouletteFactory
     }
     
     public ArrayList construct(){
-        Element zero = new Element(0, "green", "neither");
+        Element zero = new Element(0, "green", "neither");//00
         table.add(zero);
-        Element zerozero = new Element(-1, "green", "neither");
+        Element zerozero = new Element(-1, "green", "neither");//000
         table.add(zerozero);
         //maybe randomly coloring???
         for(int i = 0; i < size; i = i+2){
