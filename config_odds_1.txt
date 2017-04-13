@@ -1,4 +1,4 @@
-single 1
+single 35
 even 1
 odd 1
 red 1
