@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 /**
- * Write a description of class ContainsBet here.
+ * Write a description of class LineBet here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ContainsBet extends Bet
+public class LineBet extends Bet
 {
     protected ArrayList<WheelSpace> allSpaces;
-    public ContainsBet(Gambler gambler, int amount, ArrayList<WheelSpace> spaces){
+    public LineBet(Gambler gambler, int amount, ArrayList<WheelSpace> spaces){
         super(gambler, amount);
         this.allSpaces = spaces;
-        this.type = "contains";
+        this.type = "line";
     }
     
     public boolean isWinning(WheelSpace w){

@@ -9,10 +9,12 @@ public class Gambler
 {
     private int balance;
     private int savings;
+    private BettingStrategy strat;
     
     public Gambler(int balance){
         this.balance = balance;
         this.savings = 0;
+        this.strat = new DefaultStrategy(this);
     }
     
     public void save(int winnings){
@@ -24,12 +26,14 @@ public class Gambler
     }
     
     public Bet makeBet(){
-        int toBet = 0;
-        if(balance > 0){
-            toBet = 1;
-            balance -= toBet;
-        }
-        return new EvenBet(this,toBet);
+        return strat.choose();
     }
     
+    public int getBalance(){
+        return this.balance;
+    }
+    
+    public void removeBalance(int balanceToRemove){
+        this.balance -= balanceToRemove;
+    }
 }

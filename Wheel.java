@@ -8,13 +8,47 @@ import java.util.*;
 public class Wheel
 {
     private ArrayList<WheelSpace> spaces;
-    
+    private ArrayList<WheelSpace> line1;
+    private ArrayList<WheelSpace> line2;
+    private ArrayList<WheelSpace> line3;
+    private ArrayList<WheelSpace> firstHalf;
+    private ArrayList<WheelSpace> secondHalf;
+    private ArrayList<WheelSpace> firstThird;
+    private ArrayList<WheelSpace> secondThird;
+    private ArrayList<WheelSpace> thirdThird;
+
     /**
      * Constructor for objects of class Wheel
      */
     public Wheel(ArrayList<WheelSpace> spaces)
     {
         this.spaces = spaces;
+        fillGroupings();
+    }
+
+    public void fillGroupings(){
+        line1 = new ArrayList<WheelSpace>();
+        line2 = new ArrayList<WheelSpace>();
+        line3 = new ArrayList<WheelSpace>();
+        firstHalf = new ArrayList<WheelSpace>();
+        secondHalf = new ArrayList<WheelSpace>();
+        firstThird = new ArrayList<WheelSpace>();
+        secondThird = new ArrayList<WheelSpace>();
+        thirdThird = new ArrayList<WheelSpace>();
+        for(int i = 0; i < 12; i++){
+            line1.add(getSpace("" + (i+1)));
+            line2.add(getSpace("" + (i+2)));
+            line3.add(getSpace("" + (i+3)));
+        }
+        for(int i = 1; i < 19; i++){
+            firstHalf.add(getSpace("" + i));
+            secondHalf.add(getSpace("" + (18+i)));
+        }
+        for(int i = 1; i < 13; i++){
+            firstThird.add(getSpace("" + i));
+            secondThird.add(getSpace("" + (i+12)));
+            thirdThird.add(getSpace("" + (i+24)));
+        }
     }
 
     /**
@@ -34,7 +68,7 @@ public class Wheel
         int randomNumber =  (int)(fraction + aStart);
         return randomNumber;
     }   
-    
+
     public WheelSpace spin(){
         int totalSize = 0;
         for(WheelSpace s : spaces){
@@ -50,12 +84,57 @@ public class Wheel
         }
         return null;
     }
-    
+
+    public WheelSpace getSpace(String value){
+        for(WheelSpace s : spaces){
+            if(s.getValue().equals(value)){
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<WheelSpace> getLine1(){
+        return line1;
+    }
+
+    public ArrayList<WheelSpace> getLine2(){
+        return line1;
+    }
+
+    public ArrayList<WheelSpace> getLine3(){
+        return line1;
+    }
+
+    public ArrayList<WheelSpace> getFirstHalf(){
+        return firstHalf;
+    }
+
+    public ArrayList<WheelSpace> getSecondHalf(){
+        return secondHalf;
+    }
+
+    public ArrayList<WheelSpace> getFirstThird(){
+        return firstThird;
+    }
+
+    public ArrayList<WheelSpace> getSecondThird(){
+        return secondThird;
+    }
+
+    public ArrayList<WheelSpace> getThirdThird(){
+        return thirdThird;
+    }
+
     public String toString(){
         String s = "Roulette: ";
         for(WheelSpace space : spaces){
             s+= space + " ";
         }
         return s;
+    }
+
+    public int size(){
+        return spaces.size();
     }
 }

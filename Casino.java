@@ -47,7 +47,9 @@ public class Casino
     public ArrayList<Bet> makeBets(){
         ArrayList<Bet> bets = new ArrayList<Bet>();
         for(Gambler g : gamblers){
-            bets.add(g.makeBet());
+            if(g.hasMoney()){
+                bets.add(g.makeBet());
+            }
         }
         return bets;
     }

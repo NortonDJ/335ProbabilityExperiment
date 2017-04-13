@@ -8,9 +8,6 @@ import java.util.HashMap;
  */
 public class CasinoFactory
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class CasinoFactory
      */
@@ -26,6 +23,10 @@ public class CasinoFactory
             gamblers.add(new Gambler(startingAllowance));
         }
         HashMap<String, Integer> odds = OddsFactory.makeOdds(oddsFile);
+        CasinoComponents c = CasinoComponents.getInstance();
+        c.setWheel(w);
+        c.setGamblers(gamblers);
+        c.setOdds(odds);
         return new Casino(w, gamblers, odds);
     }
 }
