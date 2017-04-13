@@ -84,6 +84,11 @@ public class Wheel
         }
         return null;
     }
+    
+    public WheelSpace randomlySelectSpace(){
+        int index = randomPick(0, spaces.size()-1, new Random());
+        return spaces.get(index);
+    }
 
     public WheelSpace getSpace(String value){
         for(WheelSpace s : spaces){

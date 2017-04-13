@@ -12,7 +12,7 @@ public class BetFactory
         if(w == null){
             return null;
         } else {
-            WheelSpace space = w.spin();
+            WheelSpace space = w.randomlySelectSpace();
             return new SingleBet(g,amount,space);
         }
     }
