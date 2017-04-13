@@ -23,7 +23,26 @@ public class ExperimentController
     }
     
     public static void mainNew(){
-        Casino c = CasinoFactory.makeCasino(10, 100, "config_wheel_1.txt", "config_odds_1.txt");
-        c.run();
+        ArrayList<Integer> balances = new ArrayList<Integer>();
+        int trials = 10000;
+        for(int i = 0; i < trials; i++){
+            Casino c = CasinoFactory.makeCasino(10, 100, "config_wheel_1.txt", "config_odds_1.txt");
+            Result r = c.run();
+            balances.add(r.getBalance());
+        }
+        System.out.println("Simulation over after " + trials + " trials.");
+        System.out.println("Average balance for casino: " + average(balances));
+    }
+    
+    public static int average(ArrayList<Integer> balances){
+        int size = balances.size();
+        if(size <= 0){
+            return 0;
+        }
+        int sum = 0;
+        for(Integer i : balances){
+            sum += i;
+        }
+        return sum/size;
     }
 }

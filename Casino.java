@@ -18,14 +18,15 @@ public class Casino
         this.odds = odds;
     }
     
-    public void run(){
+    public Result run(){
         int i = 1;
         while(gamblersHaveMoney()){
-            System.out.println("Turn " + i);
+            //System.out.println("Turn " + i);
             turn();
             i++;
         }
-        System.out.println("Simulation over\nBalance = " + balance); 
+        //System.out.println("Simulation over\nBalance = " + balance); 
+        return new Result(balance);
     }
     
     public boolean gamblersHaveMoney(){

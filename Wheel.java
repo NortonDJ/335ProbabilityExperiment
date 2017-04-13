@@ -41,7 +41,6 @@ public class Wheel
             totalSize += s.getSize();
         }
         int slot = randomPick(0, totalSize, new Random());
-        System.out.println("Spun wheel with totalSize: " + totalSize + " and received : " + slot);
         int cumulativeSize = 0;
         for(WheelSpace s : spaces){
             cumulativeSize += s.getSize();
