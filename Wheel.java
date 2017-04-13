@@ -7,20 +7,22 @@ import java.util.*;
  */
 public class Wheel
 {
+    private ArrayList<WheelSpace> spaces;
+    
     /**
      * Constructor for objects of class Wheel
      */
-    public Wheel()
+    public Wheel(ArrayList<WheelSpace> spaces)
     {
-        
+        this.spaces = spaces;
     }
-    
+
     /**
-             * generate random integers in a specific range
-             * 
-             * int aStart, int aEnd, Random aRandom
-             * @return randomNumber
-             */
+     * generate random integers in a specific range
+     * 
+     * int aStart, int aEnd, Random aRandom
+     * @return randomNumber
+     */
     public int randomPick(int aStart, int aEnd, Random aRandom){
         if(aStart > aEnd){
             throw new IllegalArgumentException("Start cannot exceed End.");
@@ -31,5 +33,30 @@ public class Wheel
         long fraction = (long)(range * aRandom.nextDouble());
         int randomNumber =  (int)(fraction + aStart);
         return randomNumber;
+    }   
+    
+    public WheelSpace spin(){
+        int totalSize = 0;
+        for(WheelSpace s : spaces){
+            totalSize += s.getSize();
+        }
+        int slot = randomPick(0, totalSize, new Random());
+        System.out.println("Spun wheel with totalSize: " + totalSize + " and received : " + slot);
+        int cumulativeSize = 0;
+        for(WheelSpace s : spaces){
+            cumulativeSize += s.getSize();
+            if(slot <= cumulativeSize){
+                return s;
+            }
+        }
+        return null;
+    }
+    
+    public String toString(){
+        String s = "Roulette: ";
+        for(WheelSpace space : spaces){
+            s+= space + " ";
+        }
+        return s;
     }
 }

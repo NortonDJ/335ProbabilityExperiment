@@ -18,7 +18,7 @@ public class WheelSpace
     /**
      * Constructor for objects of class WheelSpace
      */
-    public WheelSpace(int size, String value, String color)
+    public WheelSpace(String value, String color, int size)
     {
         this.size = size;
         this.value = value;
@@ -61,5 +61,10 @@ public class WheelSpace
     
     public boolean isRed(){
         return this.color.equals("red");
+    }
+    
+    public String toString(){
+        String s ="(" + value + "," + color + "," + size + ")";
+        return s;
     }
 }
