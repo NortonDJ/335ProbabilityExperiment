@@ -13,25 +13,32 @@ public class RouletteFactory
     }
 
     public static Wheel makeWheel(String configFile){
+        Scanner in = null;
+        Scanner threeWords = null;
+        ArrayList<WheelSpace> spaces = new ArrayList<WheelSpace>();
         try{
-            ArrayList<WheelSpace> spaces = new ArrayList<WheelSpace>();
-            Scanner in = new Scanner(new File(configFile));
+            in = new Scanner(new File(configFile));
             while(in.hasNextLine()){
                 String line = in.nextLine();
                 if(line.isEmpty()){
                     continue;
                 }
-                Scanner threeWords = new Scanner(line);
+                threeWords = new Scanner(line);
                 String value = threeWords.next();
                 String color = threeWords.next();
                 int size = Integer.parseInt(threeWords.next());
                 spaces.add(new WheelSpace(value, color, size));
+                threeWords.close();
             }
+            in.close();
             return new Wheel(spaces);
         } catch (Exception e){
             System.out.println("Error parsing wheel config file. Exiting.");
             e.printStackTrace();
             System.exit(-1);
+        } finally {
+            in.close();
+            threeWords.close();
         }
         return null;
 

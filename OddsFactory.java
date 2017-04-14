@@ -10,23 +10,30 @@ import java.io.File;
 public class OddsFactory
 {
     public static HashMap<String, Integer> makeOdds(String oddsFile){
+        Scanner in = null;
+        Scanner twoWords = null;
+        HashMap<String, Integer> odds = new HashMap<String, Integer>();
         try{
-            HashMap<String, Integer> odds = new HashMap<String, Integer>();
-            Scanner in = new Scanner(new File(oddsFile));
+            in = new Scanner(new File(oddsFile));
             while(in.hasNextLine()){
                 String line = in.nextLine();
                 if(line.isEmpty()){
                     continue;
                 }
-                Scanner twoWords = new Scanner(line);
+                twoWords = new Scanner(line);
                 String type = twoWords.next();
                 int multiplier = Integer.parseInt(twoWords.next());
                 odds.put(type, multiplier);
+                twoWords.close();
             }
+            in.close();
             return odds;
         } catch (Exception e){
             System.out.println("Error reading odds file");
             System.exit(-1);
+        } finally {
+            in.close();
+            twoWords.close();
         }
         return null;
     }

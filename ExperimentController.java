@@ -7,49 +7,36 @@ import java.util.*;
  */
 public class ExperimentController
 {
-    public static void main(String[] args) {
-        int input_max = 36;
-        int customer_number = 1000;
-        int casino_deposit = 0;
-        int customer_allowance = 500;
-        int eachBet = 20;
-        ExperimentController ex = new ExperimentController();
-        //CustomerContainer customerContaine = new CustomerContainer(customer_number, customer_allowance,input_max);
-        //Casino casino1 = new Casino(input_max, casino_deposit, eachBet);
-        //customerContaine.pick();
-        //casino1.runSimulation();
-        //casino1.payment(customerContaine);
-        //System.out.println("deposit: " + casino1.deposit);
+    public static void main(String[] args){
+        ExperimentController.run(100000, 1, 1, "config_wheel_1.txt", "config_odds_1.txt");
+        ExperimentController.run(100000, 1, 100, "config_wheel_1.txt", "config_odds_1.txt");
+        ExperimentController.run(100000, 100, 1, "config_wheel_1.txt", "config_odds_1.txt");
+
+        ExperimentController.run(5000, 2531, 390, "config_wheel_1.txt", "config_odds_1.txt");
+        //ExperimentController.run(5000, 2531, 350, "config_wheel_2.txt", "config_odds_1.txt");
     }
 
-    public static void mainNew(){
+    public static void run(int trials, int students, int allowance, String wheelFile, String oddsFile){
         ArrayList<Integer> balances = new ArrayList<Integer>();
-        int trials = 10000;
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("INPUT PARAMETERS");
+        System.out.println("TRIALS: " + trials);
+        System.out.println("STUDENTS: " + students);
+        System.out.println("ALLOWANCE: " + allowance);
+        System.out.println("WHEEL FILE: " + wheelFile);
+        System.out.println("ODDS FILE: " + oddsFile);
+        System.out.println();
         for(int i = 0; i < trials; i++){
-            Casino c = CasinoFactory.makeCasino(2531, 400, "config_wheel_1.txt", "config_odds_1.txt");
+            Casino c = CasinoFactory.makeCasino(students, allowance, wheelFile, oddsFile);
             Result r = c.run();
-            //System.out.println(r.getBalance());
             balances.add(r.getBalance());
-            if(i%(trials/10) == 0){
-                System.out.println("Tenth done. Here's the most recent average: " + average(balances));
-            }
         }
         System.out.println("Simulation over after " + trials + " trials.");
         System.out.println("Average balance for casino: " + average(balances));
-        balances = new ArrayList<Integer>();
-        for(int i = 0; i < trials; i++){
-            Casino c = CasinoFactory.makeCasino(2531, 400, "config_wheel_2.txt", "config_odds_1.txt");
-            Result r = c.run();
-            balances.add(r.getBalance());
-            if(i%(trials/10) == 0){
-                System.out.println("Tenth done. Here's the most recent average: " + average(balances));
-            }
-        }
-        System.out.println("Simulation over after " + trials + " trials.");
-        System.out.println("Average balance for casino: " + average(balances));
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     }
 
-    public static long average(ArrayList<Integer> balances){
+    public static double average(ArrayList<Integer> balances){
         long size = balances.size();
         if(size <= 0){
             return 0;
@@ -58,6 +45,6 @@ public class ExperimentController
         for(Integer i : balances){
             sum += i;
         }
-        return sum/size;
+        return sum/(double)size;
     }
 }
