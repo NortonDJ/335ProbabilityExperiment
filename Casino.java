@@ -40,7 +40,9 @@ public class Casino
     
     public void turn(){
         ArrayList<Bet> bets = makeBets();
+        //System.out.println("Bets: " + bets);
         WheelSpace winner = pickWinner();
+        //System.out.println("Winner: " + winner);
         balance += handlePayouts(bets, winner);
     }
     
@@ -72,13 +74,18 @@ public class Casino
                 bet.getGambler().save(winnings);
             }
         }
+        //System.out.println("Casino gain: " + amount);
         return amount;
     }
     
     public int getWinnings(Bet bet){
         try{
             //return odds * amount PLUS the amount they paid for the bet
-            return bet.getAmount() * (1 + odds.get(bet.getType()));
+            int amt = bet.getAmount();
+            int factor = odds.get(bet.getType());
+            int multiplier = 1 + factor;
+            int winnings = amt * multiplier;
+            return winnings;
         } catch (Exception e) {
             System.out.println("Trying to find winnings for undefined bet type. Exiting.");
             System.exit(-1);

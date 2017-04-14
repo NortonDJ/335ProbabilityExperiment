@@ -15,4 +15,10 @@ public class BlackBet extends Bet
     public boolean isWinning(WheelSpace rouletteResult){
         return rouletteResult.isBlack();
     }
+    
+        public String toString(){
+        String s = "";
+        s+= "Black(" + amount +")";
+        return s;
+    }
 }

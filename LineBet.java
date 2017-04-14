@@ -17,4 +17,10 @@ public class LineBet extends Bet
     public boolean isWinning(WheelSpace w){
         return allSpaces.contains(w);
     }
+    
+    public String toString(){
+        String s = "";
+        s+= "Line(" + amount +"," + allSpaces + ")";
+        return s;
+    }
 }

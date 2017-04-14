@@ -17,4 +17,10 @@ public class ContainsBet extends Bet
     public boolean isWinning(WheelSpace w){
         return allSpaces.contains(w);
     }
+    
+        public String toString(){
+        String s = "";
+        s+= "Contains(" + amount +"," + allSpaces + ")";
+        return s;
+    }
 }

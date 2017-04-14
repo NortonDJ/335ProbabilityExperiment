@@ -28,7 +28,7 @@ public class WheelSpace
     public boolean isOdd(){
         Integer valueInt = Integer.parseInt(this.value);
         if(valueInt > 0){
-            return valueInt % 2 == 0;
+            return valueInt % 2 != 0;
         } else {
             return false; //green spaces 00, 0 etc are not odd
         }
@@ -37,7 +37,7 @@ public class WheelSpace
     public boolean isEven(){
         Integer valueInt = Integer.parseInt(this.value);
         if(valueInt > 0){
-            return valueInt % 2 != 0;
+            return valueInt % 2 == 0;
         } else {
             return false; //green spaces 00, 0 etc are not even
         }

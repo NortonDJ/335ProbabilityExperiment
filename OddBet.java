@@ -15,4 +15,10 @@ public class OddBet extends Bet
     public boolean isWinning(WheelSpace rouletteResult){
         return rouletteResult.isOdd();
     }
+    
+        public String toString(){
+        String s = "";
+        s+= "Odd(" + amount +")";
+        return s;
+    }
 }

@@ -15,4 +15,10 @@ public class EvenBet extends Bet
     public boolean isWinning(WheelSpace rouletteResult){
         return rouletteResult.isEven();
     }
+    
+    public String toString(){
+        String s = "";
+        s+= "Even(" + amount +")";
+        return s;
+    }
 }

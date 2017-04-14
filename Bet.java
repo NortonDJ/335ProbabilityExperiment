@@ -9,7 +9,7 @@ public abstract class Bet implements BetInterface
 {
     protected int amount;
     protected Gambler gambler;
-    protected static String type = "UNDEFINED";
+    protected String type = "UNDEFINED";
     
     public Bet(Gambler gambler, int amount){
         this.amount = amount;

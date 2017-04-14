@@ -17,4 +17,10 @@ public class GroupBet extends Bet
     public boolean isWinning(WheelSpace w){
         return allSpaces.contains(w);
     }
+    
+    public String toString(){
+        String s = "";
+        s+= "Group(" + amount +"," + allSpaces + ")";
+        return s;
+    }
 }

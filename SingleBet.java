@@ -18,4 +18,10 @@ public class SingleBet extends Bet
     public boolean isWinning(WheelSpace rouletteResult){
         return space == rouletteResult;
     }
+    
+    public String toString(){
+        String s = "";
+        s+= "Single(" + amount + "," + space.getValue() +")";
+        return s;
+    }
 }

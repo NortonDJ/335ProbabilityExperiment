@@ -26,8 +26,9 @@ public class ExperimentController
         ArrayList<Integer> balances = new ArrayList<Integer>();
         int trials = 10000;
         for(int i = 0; i < trials; i++){
-            Casino c = CasinoFactory.makeCasino(2531, 100, "config_wheel_1.txt", "config_odds_1.txt");
+            Casino c = CasinoFactory.makeCasino(2531, 400, "config_wheel_1.txt", "config_odds_1.txt");
             Result r = c.run();
+            //System.out.println(r.getBalance());
             balances.add(r.getBalance());
             if(i%(trials/10) == 0){
                 System.out.println("Tenth done. Here's the most recent average: " + average(balances));
@@ -37,7 +38,7 @@ public class ExperimentController
         System.out.println("Average balance for casino: " + average(balances));
         balances = new ArrayList<Integer>();
         for(int i = 0; i < trials; i++){
-            Casino c = CasinoFactory.makeCasino(2531, 100, "config_wheel_2.txt", "config_odds_1.txt");
+            Casino c = CasinoFactory.makeCasino(2531, 400, "config_wheel_2.txt", "config_odds_1.txt");
             Result r = c.run();
             balances.add(r.getBalance());
             if(i%(trials/10) == 0){
