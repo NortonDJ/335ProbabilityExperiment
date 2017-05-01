@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * Write a description of class ExperimentController here.
  * 
@@ -10,10 +11,13 @@ public class ExperimentController
     public static void main(String[] args){
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
         //ExperimentController.demo();
-        ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
-	ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
-    	ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
-    	ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
+	ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
+        ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
+	ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
+	//ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
+	//ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
+    	//ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
+    	//ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
     }
 
     public static void demo(){
@@ -47,6 +51,38 @@ public class ExperimentController
         System.out.println("Variance: " + variance(balances, average));
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     }
+
+    public static void greenSuite(int trials, int students, int allowance, String outputFile, int maxSpaces, int increment){
+	try{
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("YOU ARE RUNNING A GREEN SUITE SIM");
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+	FileWriter writer = new FileWriter(new File(outputFile));
+	writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
+        writer.write("numberOfSpaces, average, variance\n");
+	for(int j = 0; j <= maxSpaces; j = j + increment){
+        	System.out.println("Max Spaces: " + j);
+		ArrayList<Integer> balances = new ArrayList<Integer>();
+		for(int i = 0; i < trials; i++){      
+            		Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
+            		CasinoComponents.getInstance().getWheel().addGreenSpaces(j, 1);
+            		Result r = c.run();
+            		balances.add(r.getBalance());
+        	}
+        	double average = average(balances);
+		double variance = variance(balances, average);
+		balances.clear();
+        	writer.write("" + j + "," + average + "," + variance +"\n");
+	}
+	writer.flush();
+	writer.close();
+	System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+	} catch (Exception e){
+		e.printStackTrace();
+		System.exit(1);
+	}
+    }
+
     public static void greenSpaces(int trials, int students, int allowance, String wheelFile, String oddsFile, int n, int size){
         ArrayList<Integer> balances = new ArrayList<Integer>();
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
@@ -75,6 +111,38 @@ public class ExperimentController
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     }
 
+    public static void carveSuite(int trials, int students, int allowance, String outputFile, String value, int maxSize, int increment){
+        try{
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("YOU ARE RUNNING A CARVE SUITE SIM");
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        FileWriter writer = new FileWriter(new File(outputFile));
+        writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
+        writer.write("size, average, variance\n");
+        for(int j = 0; j <= maxSize; j = j + increment){
+                System.out.println("Max Size: " + j);
+                ArrayList<Integer> balances = new ArrayList<Integer>();
+                for(int i = 0; i < trials; i++){      
+                        Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
+                        CasinoComponents.getInstance().getWheel().carve(value, j);
+                        Result r = c.run();
+                        balances.add(r.getBalance());
+                }
+                double average = average(balances);
+                double variance = variance(balances, average);
+                balances.clear();
+		writer.write("" + j + "," + average + "," + variance+"\n");
+        }
+	writer.flush();
+	writer.close();
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        } catch (Exception e){
+                e.printStackTrace();
+                System.exit(1);
+        }
+
+    }
+
     public static void carveSpaces(int trials, int students, int allowance, String wheelFile, String oddsFile, String value, int size){
        ArrayList<Integer> balances = new ArrayList<Integer>();
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
@@ -101,6 +169,38 @@ public class ExperimentController
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    }
+
+    public static void oddsSuite(int trials, int students, int allowance, String outputFile, String type, int maxOdd, int increment){
+        try{
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("YOU ARE RUNNING AN ODDS SUITE SIM");
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        FileWriter writer = new FileWriter(new File(outputFile));
+        writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
+        writer.write("odd, average, variance\n");
+        for(int j = 0; j <= maxOdd; j = j + increment){
+                System.out.println("Max Odd: " + j);
+                ArrayList<Integer> balances = new ArrayList<Integer>();
+                for(int i = 0; i < trials; i++){      
+                        Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
+                        c.setOdds(type, j);
+                        Result r = c.run();
+                        balances.add(r.getBalance());
+                }
+                double average = average(balances);
+                double variance = variance(balances, average);
+		balances.clear();
+                writer.write("" + j + "," + average + "," + variance +"\n");
+        }
+        writer.flush();
+        writer.close();
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        } catch (Exception e){
+                e.printStackTrace();
+                System.exit(1);
+        }
+
     }
 
     public static void changeOdds(int trials, int students, int allowance, String wheelFile, String oddsFile, String type, int odd){
