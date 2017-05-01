@@ -93,7 +93,9 @@ public class Casino
         return -1;
     }
     
-    
+    public void setOdds(String type, int value){
+	this.odds.put(type, value);
+    }    
     
     /*int deposit;
     Random random = new Random();

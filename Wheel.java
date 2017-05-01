@@ -26,6 +26,24 @@ public class Wheel
         fillGroupings();
     }
 
+    public void addGreenSpaces(int numberOfSpaces, int size){
+	for(int i = 0; i < numberOfSpaces; i++){
+	    String s = "";            
+	    for(int j = 0; j < i + 2; j++){
+		s += "0";	
+	    }
+	    this.spaces.add(new WheelSpace(s, "green", size));
+	}
+    }
+
+    public void carve(String value, int size){
+	for(WheelSpace space : spaces){
+	    if(space.getValue().equals(value)){
+	        space.setSize(size);
+		return;
+	    }        
+	}
+    }
     public void fillGroupings(){
         line1 = new ArrayList<WheelSpace>();
         line2 = new ArrayList<WheelSpace>();

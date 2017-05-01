@@ -62,6 +62,10 @@ public class WheelSpace
     public boolean isRed(){
         return this.color.equals("red");
     }
+
+    public void setSize(int size){
+	this.size = size;
+    }
     
     public String toString(){
         String s ="(" + value + "," + color + "," + size + ")";
