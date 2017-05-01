@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import java.awt.Window;
+
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,42 +9,45 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Gui335 {
-    ExperimentController ec;
-    private int number_of_trials;
+public class Gui_custom {
+
+	private int number_of_trials;
     private int number_of_students;
     private int number_of_allowance;
+    private String name_of_wheel = null;
+    private String name_of_odd = null;
 
-    private JFrame frame;
+    JFrame frame;
     private JTextField trialNumber;
     private JTextField studentNumber;
     private JTextField allowanceNumber;
+    private JTextField wheelFileName;
+    private JTextField oddFileName;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Gui335 window = new Gui335();
-                    window.frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Gui_custom window = new Gui_custom();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    /**
-     * Create the application.
-     */
-    public Gui335() {
-        initialize();
-        ec = new ExperimentController();
-    }
+	/**
+	 * Create the application.
+	 */
+	public Gui_custom() {
+		initialize();
+	}
 
-    /**
+	/**
      * Initialize the contents of the frame.
      */
     private void initialize() {
@@ -52,36 +57,40 @@ public class Gui335 {
         frame.getContentPane().setLayout(null);
         
         JLabel lblNewLabel = new JLabel("Trials:");
-        lblNewLabel.setBounds(6, 6, 61, 16);
+        lblNewLabel.setBounds(38, 6, 61, 16);
         frame.getContentPane().add(lblNewLabel);
         
         JLabel label = new JLabel("Students:");
-        label.setBounds(6, 34, 61, 16);
+        label.setBounds(38, 34, 61, 16);
         frame.getContentPane().add(label);
         
         JLabel lblAllowance = new JLabel("Allowance:");
-        lblAllowance.setBounds(6, 62, 73, 16);
+        lblAllowance.setBounds(38, 62, 73, 16);
         frame.getContentPane().add(lblAllowance);
         
         JLabel lblWheelFile = new JLabel("Wheel File:");
-        lblWheelFile.setBounds(6, 90, 73, 16);
+        lblWheelFile.setBounds(38, 90, 73, 16);
         frame.getContentPane().add(lblWheelFile);
         
         JLabel lblOddFile = new JLabel("Odd File:");
-        lblOddFile.setBounds(6, 118, 61, 16);
+        lblOddFile.setBounds(38, 118, 61, 16);
         frame.getContentPane().add(lblOddFile);
         
-        //
         JButton btnStartSimulation = new JButton("Start Simulation");
         btnStartSimulation.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try{
+                	if (name_of_odd.equals(null)||name_of_wheel.equals(null) ) {
+                		JOptionPane.showMessageDialog(frame, "Please Enter Valid names.");
+					}
                     number_of_trials = Integer.parseInt(trialNumber.getText());
                     number_of_students = Integer.parseInt(studentNumber.getText());
                     number_of_allowance = Integer.parseInt(allowanceNumber.getText());
-                    ec.run(number_of_trials, number_of_students, number_of_allowance, "config_wheel_1.txt", "config_odds_1.txt");
+                    name_of_wheel = wheelFileName.getText();
+                    name_of_odd = oddFileName.getText();
+                    
                 }catch(Exception ex){
-                    JOptionPane.showMessageDialog(frame, "Please Enter Valid information.");
+                    JOptionPane.showMessageDialog(frame, "Please Enter Valid Number.");
                 }
             }
         });
@@ -89,36 +98,38 @@ public class Gui335 {
         btnStartSimulation.setBounds(81, 195, 133, 29);
         frame.getContentPane().add(btnStartSimulation);
         
-        JButton btnExit = new JButton("EXIT");
+        JButton btnExit = new JButton("<- BACK");
         btnExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+            	frame.dispose();
             }
         });
         btnExit.setBounds(226, 195, 117, 29);
         frame.getContentPane().add(btnExit);
         
         trialNumber = new JTextField();
-        trialNumber.setBounds(79, 1, 130, 26);
+        trialNumber.setBounds(111, 1, 130, 26);
         frame.getContentPane().add(trialNumber);
         trialNumber.setColumns(10);
         
         studentNumber = new JTextField();
-        studentNumber.setBounds(81, 29, 130, 26);
+        studentNumber.setBounds(111, 29, 130, 26);
         frame.getContentPane().add(studentNumber);
         studentNumber.setColumns(10);
         
         allowanceNumber = new JTextField();
-        allowanceNumber.setBounds(81, 57, 130, 26);
+        allowanceNumber.setBounds(111, 57, 130, 26);
         frame.getContentPane().add(allowanceNumber);
         allowanceNumber.setColumns(10);
         
-        JLabel lblConfigwheeltxt = new JLabel("config_wheel_1.txt");
-        lblConfigwheeltxt.setBounds(81, 90, 123, 16);
-        frame.getContentPane().add(lblConfigwheeltxt);
+        wheelFileName = new JTextField();
+        wheelFileName.setBounds(111, 85, 130, 26);
+        frame.getContentPane().add(wheelFileName);
+        wheelFileName.setColumns(10);
         
-        JLabel lblConfigoddstxt = new JLabel("config_odds_1.txt");
-        lblConfigoddstxt.setBounds(79, 118, 125, 16);
-        frame.getContentPane().add(lblConfigoddstxt);
+        oddFileName = new JTextField();
+        oddFileName.setBounds(111, 113, 130, 26);
+        frame.getContentPane().add(oddFileName);
+        oddFileName.setColumns(10);
     }
 }
