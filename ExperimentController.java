@@ -11,13 +11,13 @@ public class ExperimentController
     public static void main(String[] args){
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
         //ExperimentController.demo();
-	ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
+    ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
         ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
-	ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
-	//ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
-	//ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
-    	//ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
-    	//ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
+    ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
+    //ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
+    //ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
+        //ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
+        //ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
     }
 
     public static void demo(){
@@ -45,7 +45,7 @@ public class ExperimentController
             balances.add(r.getBalance());
         }
         System.out.println("Simulation over after " + trials + " trials.");
-	System.out.println(balances);
+        System.out.println(balances);
         double average = average(balances);
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
@@ -53,34 +53,34 @@ public class ExperimentController
     }
 
     public static void greenSuite(int trials, int students, int allowance, String outputFile, int maxSpaces, int increment){
-	try{
+    try{
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         System.out.println("YOU ARE RUNNING A GREEN SUITE SIM");
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-	FileWriter writer = new FileWriter(new File(outputFile));
-	writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
+    FileWriter writer = new FileWriter(new File(outputFile));
+    writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
         writer.write("numberOfSpaces, average, variance\n");
-	for(int j = 0; j <= maxSpaces; j = j + increment){
-        	System.out.println("Max Spaces: " + j);
-		ArrayList<Integer> balances = new ArrayList<Integer>();
-		for(int i = 0; i < trials; i++){      
-            		Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
-            		CasinoComponents.getInstance().getWheel().addGreenSpaces(j, 1);
-            		Result r = c.run();
-            		balances.add(r.getBalance());
-        	}
-        	double average = average(balances);
-		double variance = variance(balances, average);
-		balances.clear();
-        	writer.write("" + j + "," + average + "," + variance +"\n");
-	}
-	writer.flush();
-	writer.close();
-	System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-	} catch (Exception e){
-		e.printStackTrace();
-		System.exit(1);
-	}
+    for(int j = 0; j <= maxSpaces; j = j + increment){
+            System.out.println("Max Spaces: " + j);
+        ArrayList<Integer> balances = new ArrayList<Integer>();
+        for(int i = 0; i < trials; i++){      
+                    Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
+                    CasinoComponents.getInstance().getWheel().addGreenSpaces(j, 1);
+                    Result r = c.run();
+                    balances.add(r.getBalance());
+            }
+            double average = average(balances);
+        double variance = variance(balances, average);
+        balances.clear();
+            writer.write("" + j + "," + average + "," + variance +"\n");
+    }
+    writer.flush();
+    writer.close();
+    System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    } catch (Exception e){
+        e.printStackTrace();
+        System.exit(1);
+    }
     }
 
     public static void greenSpaces(int trials, int students, int allowance, String wheelFile, String oddsFile, int n, int size){
@@ -94,12 +94,12 @@ public class ExperimentController
         System.out.println("ALLOWANCE: " + allowance);
         System.out.println("WHEEL FILE: " + wheelFile);
         System.out.println("ODDS FILE: " + oddsFile);
-	System.out.println("ADDITIONAL GREEN SPACES: " + n);
-	System.out.println("SIZE OF EACH GREEN SPACE: " + size);
+    System.out.println("ADDITIONAL GREEN SPACES: " + n);
+    System.out.println("SIZE OF EACH GREEN SPACE: " + size);
         System.out.println(); 
-	for(int i = 0; i < trials; i++){
+    for(int i = 0; i < trials; i++){
             Casino c = CasinoFactory.makeCasino(students, allowance, wheelFile, oddsFile);
-	    CasinoComponents.getInstance().getWheel().addGreenSpaces(n, size);
+        CasinoComponents.getInstance().getWheel().addGreenSpaces(n, size);
             Result r = c.run();
             balances.add(r.getBalance());
         }
@@ -131,10 +131,10 @@ public class ExperimentController
                 double average = average(balances);
                 double variance = variance(balances, average);
                 balances.clear();
-		writer.write("" + j + "," + average + "," + variance+"\n");
+        writer.write("" + j + "," + average + "," + variance+"\n");
         }
-	writer.flush();
-	writer.close();
+    writer.flush();
+    writer.close();
         System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         } catch (Exception e){
                 e.printStackTrace();
@@ -190,7 +190,7 @@ public class ExperimentController
                 }
                 double average = average(balances);
                 double variance = variance(balances, average);
-		balances.clear();
+        balances.clear();
                 writer.write("" + j + "," + average + "," + variance +"\n");
         }
         writer.flush();
