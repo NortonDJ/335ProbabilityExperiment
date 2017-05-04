@@ -10,7 +10,7 @@ public class ExperimentController
 {
     public static void main(String[] args){
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
-        //ExperimentController.demo();
+        ExperimentController.demo();
 	ExperimentController.runSuite(100000, 2531, 390, "output_dist_4.csv");
 	ExperimentController.greenSuite(1000, 2531, 195, "output_green_4.csv", 200, 1);
         ExperimentController.carveSuite(1000, 2531, 195, "output_carve_4.csv", "00", 200, 1); 
