@@ -11,7 +11,6 @@ public class ExperimentController
     public static void main(String[] args){
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
         //ExperimentController.demo();
-<<<<<<< HEAD
     ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
     ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
     ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
@@ -19,7 +18,6 @@ public class ExperimentController
     //ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
         //ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
         //ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
-=======
 	ExperimentController.runSuite(100000, 2531, 390, "output_dist_4.csv");
 	ExperimentController.greenSuite(1000, 2531, 195, "output_green_4.csv", 200, 1);
         ExperimentController.carveSuite(1000, 2531, 195, "output_carve_4.csv", "00", 200, 1); 
@@ -28,7 +26,6 @@ public class ExperimentController
 	//ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
     	//ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
     	//ExperimentController.changeOdds(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "single", 10);
->>>>>>> 8c949206506243fe033039743b237eefb56656fb
     }
 
     public static void demo(){
