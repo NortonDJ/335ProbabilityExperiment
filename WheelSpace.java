@@ -56,11 +56,11 @@ public class WheelSpace
     }
     
     public boolean isBlack(){
-        return this.color.equals("black");
+        return this.color.equals("b");
     }
     
     public boolean isRed(){
-        return this.color.equals("red");
+        return this.color.equals("r");
     }
 
     public void setSize(int size){
