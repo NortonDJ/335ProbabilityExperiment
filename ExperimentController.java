@@ -11,9 +11,10 @@ public class ExperimentController
     public static void main(String[] args){
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
         //ExperimentController.demo();
-	ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
-        ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
-	ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
+	ExperimentController.runSuite(100000, 2531, 390, "output_dist_4.csv");
+	ExperimentController.greenSuite(1000, 2531, 195, "output_green_4.csv", 200, 1);
+        ExperimentController.carveSuite(1000, 2531, 195, "output_carve_4.csv", "00", 200, 1); 
+	ExperimentController.oddsSuite(1000, 2531, 195, "output_odds_4.csv", "single", 200, 1);
 	//ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
 	//ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
     	//ExperimentController.carveSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", "00", 25);
@@ -25,6 +26,42 @@ public class ExperimentController
         ExperimentController.run(100000, 1, 100, "config_wheel_1.txt", "config_odds_1.txt");
         ExperimentController.run(100000, 100, 1, "config_wheel_1.txt", "config_odds_1.txt");
         ExperimentController.run(5000, 2531, 390, "config_wheel_1.txt", "config_odds_1.txt");
+    }
+
+    public static void runSuite(int trials, int students, int allowance, String outputFile){
+	try{
+        ArrayList<Integer> balances = new ArrayList<Integer>();
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("YOU ARE RUNNING A RUN SUITE");
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        System.out.println("INPUT PARAMETERS");
+        System.out.println("TRIALS: " + trials);
+        System.out.println("STUDENTS: " + students);
+        System.out.println("ALLOWANCE: " + allowance);
+        System.out.println();
+        FileWriter writer = new FileWriter(new File(outputFile));
+        writer.write("trials = " + trials + " students = " + students + " allowance = " + allowance + "\n"); 
+        writer.write("balance\n");
+        for(int i = 0; i < trials; i++){
+	    if((trials/100) == i){
+		System.out.println("Trial: " + i);
+	    }
+            Casino c = CasinoFactory.makeCasino(students, allowance, "config_wheel_1.txt", "config_odds_1.txt");
+            Result r = c.run();
+            balances.add(r.getBalance());
+            writer.write(r.getBalance() + "\n");
+	    writer.flush();
+        }
+        double average = average(balances);
+        writer.write("," + average + "," + variance(balances, average)+ "\n");
+	writer.flush();
+	writer.close();
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        } catch(Exception e){
+                e.printStackTrace();
+                System.exit(1);
+        }
+
     }
 
     public static void run(int trials, int students, int allowance, String wheelFile, String oddsFile){
