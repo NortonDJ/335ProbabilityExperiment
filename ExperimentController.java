@@ -12,7 +12,7 @@ public class ExperimentController
         //ExperimentController.run(100000,10,1000, "config_wheel_3.txt", "config_odds_1.txt");
         //ExperimentController.demo();
     ExperimentController.greenSuite(1000, 2531, 390, "output_green_2.csv", 100, 1);
-        ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
+    ExperimentController.carveSuite(1000, 2531, 390, "output_carve_2.csv", "00", 100, 1); 
     ExperimentController.oddsSuite(1000, 2531, 390, "output_odds_2.csv", "single", 100, 1);
     //ExperimentController.run(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt");
     //ExperimentController.greenSpaces(1000,10,1000, "config_wheel_1.txt", "config_odds_1.txt", 500, 1);
