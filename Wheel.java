@@ -32,7 +32,7 @@ public class Wheel
 	    for(int j = 0; j < i + 2; j++){
 		s += "0";	
 	    }
-	    this.spaces.add(new WheelSpace(s, "green", size));
+	    this.spaces.add(new WheelSpace(s, "g", size));
 	}
     }
 
