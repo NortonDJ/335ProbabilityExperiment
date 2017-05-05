@@ -25,12 +25,12 @@ public class Gui_odds {
     private JLabel label;
     private JTextField textField_trials;
     private JLabel label_1;
-    private JTextField textField_students;
+    private JTextField textField_gamblers;
     private JLabel label_2;
     private JTextField textField_allowance;
     
     private int number_of_trials;
-    private int number_of_students;
+    private int number_of_gamblers;
     private int number_of_allowance;
     
     private int number_of_single;
@@ -173,15 +173,15 @@ public class Gui_odds {
         textField_trials.setBounds(161, 58, 61, 26);
         frame.getContentPane().add(textField_trials);
         
-        label_1 = new JLabel("Number of Students:");
+        label_1 = new JLabel("Number of Gamblers:");
         label_1.setFont(new Font("Lucida Grande", Font. PLAIN, 13));
-        label_1.setBounds(16, 80, 133, 38);
+        label_1.setBounds(16, 80, 139, 38);
         frame.getContentPane().add(label_1);
         
-        textField_students = new JTextField();
-        textField_students.setColumns(10);
-        textField_students.setBounds(161, 86, 61, 26);
-        frame.getContentPane().add(textField_students);
+        textField_gamblers = new JTextField();
+        textField_gamblers.setColumns(10);
+        textField_gamblers.setBounds(161, 86, 61, 26);
+        frame.getContentPane().add(textField_gamblers);
         
         label_2 = new JLabel("Number of Allowance:");
         label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 13));
@@ -197,7 +197,7 @@ public class Gui_odds {
         btnSimulation.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 number_of_trials = Integer.parseInt(textField_trials.getText());
-                number_of_students = Integer.parseInt(textField_students.getText());
+                number_of_gamblers = Integer.parseInt(textField_gamblers.getText());
                 number_of_allowance = Integer.parseInt(textField_allowance.getText());
                 ArrayList<Integer> balances = new ArrayList<Integer>();
                 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
@@ -205,7 +205,7 @@ public class Gui_odds {
                 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
                 System.out.println("INPUT PARAMETERS");
                 System.out.println("TRIALS: " + number_of_trials);
-                System.out.println("STUDENTS: " + number_of_students);
+                System.out.println("STUDENTS: " + number_of_gamblers);
                 System.out.println("ALLOWANCE: " + number_of_allowance);
                 System.out.println("WHEEL FILE: " + "config_wheel_1.txt");
                 System.out.println("ODDS FILE: " + "config_odds_1.txt");

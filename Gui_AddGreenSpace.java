@@ -19,14 +19,14 @@ public class Gui_AddGreenSpace {
 	private JTextField textField_additionalGreen;
 	private JLabel lblNumberOfTrials;
 	private JTextField textField_trials;
-	private JLabel lblNumberOfStudents;
-	private JTextField textField_students;
+	private JLabel lblNumberOfGamblers;
+	private JTextField textField_Gamblers;
 	private JLabel lblNumberOfAllowance;
 	private JTextField textField_allowance;
 	private JButton btnSimulation;
 
 	private int number_of_trials;
-    private int number_of_students;
+    private int number_of_gamblers;
     private int number_of_allowance;
     private int sizeOfGreen;
     private int number_of_additional_green_space;
@@ -97,15 +97,15 @@ public class Gui_AddGreenSpace {
 		textField_trials.setBounds(306, 161, 130, 26);
 		frame.getContentPane().add(textField_trials);
 		
-		lblNumberOfStudents = new JLabel("Number of Students:");
-		lblNumberOfStudents.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		lblNumberOfStudents.setBounds(36, 204, 258, 38);
-		frame.getContentPane().add(lblNumberOfStudents);
+		lblNumberOfGamblers = new JLabel("Number of Gamblers:");
+		lblNumberOfGamblers.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblNumberOfGamblers.setBounds(36, 204, 258, 38);
+		frame.getContentPane().add(lblNumberOfGamblers);
 		
-		textField_students = new JTextField();
-		textField_students.setColumns(10);
-		textField_students.setBounds(306, 211, 130, 26);
-		frame.getContentPane().add(textField_students);
+		textField_Gamblers = new JTextField();
+		textField_Gamblers.setColumns(10);
+		textField_Gamblers.setBounds(306, 211, 130, 26);
+		frame.getContentPane().add(textField_Gamblers);
 		
 		lblNumberOfAllowance = new JLabel("Number of Allowance:");
 		lblNumberOfAllowance.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
@@ -123,10 +123,10 @@ public class Gui_AddGreenSpace {
 				try{
 					sizeOfGreen = Integer.parseInt(textField_additionalGreen.getText());
                     number_of_trials = Integer.parseInt(textField_trials.getText());
-                    number_of_students = Integer.parseInt(textField_students.getText());
+                    number_of_gamblers = Integer.parseInt(textField_Gamblers.getText());
                     number_of_allowance = Integer.parseInt(textField_allowance.getText());
                     number_of_additional_green_space = Integer.parseInt(textField_additionalGreen.getText());
-                    ec.greenSpaces(number_of_trials, number_of_students, number_of_allowance,
+                    ec.greenSpaces(number_of_trials, number_of_gamblers, number_of_allowance,
                         "config_wheel_1.txt", "config_odds_1.txt", number_of_additional_green_space, sizeOfGreen);
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(frame, "Please Enter Valid Number.");

@@ -58,7 +58,7 @@ public class Gui_CarveWheel {
     private JLabel label_38;
     private JTextField textField_trials;
     private JLabel label_39;
-    private JTextField textField_students;
+    private JTextField textField_Gamblers;
     private JLabel label_40;
     private JTextField textField_allowance;
 
@@ -516,7 +516,7 @@ public class Gui_CarveWheel {
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int trials = Integer.parseInt(textField_trials.getText());
-                int students = Integer.parseInt(textField_students.getText());
+                int Gamblers = Integer.parseInt(textField_Gamblers.getText());
                 int allowance = Integer.parseInt(textField_allowance.getText()); 
                 ArrayList<Integer> balances = new ArrayList<Integer>();
                 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
@@ -524,7 +524,7 @@ public class Gui_CarveWheel {
                 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
                 System.out.println("INPUT PARAMETERS");
                 System.out.println("TRIALS: " + trials);
-                System.out.println("STUDENTS: " + students);
+                System.out.println("Gamblers: " + Gamblers);
                 System.out.println("ALLOWANCE: " + allowance);
                 System.out.println("WHEEL FILE: " + "config_wheel_1.txt");
                 System.out.println("ODDS FILE: " + "config_odds_1.txt");
@@ -691,7 +691,7 @@ public class Gui_CarveWheel {
                         balances.add(r.getBalance());
                     }
                 }
-                catch(Exception ex){
+                catch(Exception ex){                    
                     JOptionPane.showMessageDialog(frame, "Please Enter Valid Number.");
                 }
         System.out.println("Simulation over after " + trials + " trials.");
@@ -724,15 +724,15 @@ public class Gui_CarveWheel {
         textField_trials.setBounds(268, 328, 130, 26);
         frame.getContentPane().add(textField_trials);
         
-        label_39 = new JLabel("Number of Students:");
+        label_39 = new JLabel("Number of Gamblers:");
         label_39.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         label_39.setBounds(58, 366, 258, 38);
         frame.getContentPane().add(label_39);
         
-        textField_students = new JTextField();
-        textField_students.setColumns(10);
-        textField_students.setBounds(268, 373, 130, 26);
-        frame.getContentPane().add(textField_students);
+        textField_Gamblers = new JTextField();
+        textField_Gamblers.setColumns(10);
+        textField_Gamblers.setBounds(268, 373, 130, 26);
+        frame.getContentPane().add(textField_Gamblers);
         
         label_40 = new JLabel("Number of Allowance:");
         label_40.setFont(new Font("Lucida Grande", Font.PLAIN, 15));

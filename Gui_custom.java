@@ -12,14 +12,14 @@ import java.awt.event.ActionEvent;
 public class Gui_custom {
     ExperimentController ec;
     private int number_of_trials;
-    private int number_of_students;
+    private int number_of_gamblers;
     private int number_of_allowance;
     private String name_of_wheel = null;
     private String name_of_odd = null;
 
     JFrame frame;
     private JTextField trialNumber;
-    private JTextField studentNumber;
+    private JTextField gamblerNumber;
     private JTextField allowanceNumber;
     private JTextField wheelFileName;
     private JTextField oddFileName;
@@ -62,8 +62,8 @@ public class Gui_custom {
         lblNewLabel.setBounds(38, 89, 61, 16);
         frame.getContentPane().add(lblNewLabel);
         
-        JLabel label = new JLabel("Students:");
-        label.setBounds(38, 117, 61, 16);
+        JLabel label = new JLabel("Gamblers:");
+        label.setBounds(38, 117, 73, 16);
         frame.getContentPane().add(label);
         
         JLabel lblAllowance = new JLabel("Allowance:");
@@ -83,11 +83,11 @@ public class Gui_custom {
             public void actionPerformed(ActionEvent e) {
                 try{
                     number_of_trials = Integer.parseInt(trialNumber.getText());
-                    number_of_students = Integer.parseInt(studentNumber.getText());
+                    number_of_gamblers = Integer.parseInt(gamblerNumber.getText());
                     number_of_allowance = Integer.parseInt(allowanceNumber.getText());
                     name_of_wheel = wheelFileName.getText();
                     name_of_odd = oddFileName.getText();
-                    ec.run(number_of_trials, number_of_students, number_of_allowance, name_of_wheel, name_of_odd);
+                    ec.run(number_of_trials, number_of_gamblers, number_of_allowance, name_of_wheel, name_of_odd);
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(frame, "Please Enter Valid Number.");
                 }
@@ -111,10 +111,10 @@ public class Gui_custom {
         frame.getContentPane().add(trialNumber);
         trialNumber.setColumns(10);
         
-        studentNumber = new JTextField();
-        studentNumber.setBounds(111, 112, 130, 26);
-        frame.getContentPane().add(studentNumber);
-        studentNumber.setColumns(10);
+        gamblerNumber = new JTextField();
+        gamblerNumber.setBounds(111, 112, 130, 26);
+        frame.getContentPane().add(gamblerNumber);
+        gamblerNumber.setColumns(10);
         
         allowanceNumber = new JTextField();
         allowanceNumber.setBounds(111, 145, 130, 26);
