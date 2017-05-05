@@ -54,9 +54,10 @@ public class Wheel
         secondThird = new ArrayList<WheelSpace>();
         thirdThird = new ArrayList<WheelSpace>();
         for(int i = 0; i < 12; i++){
-            line1.add(getSpace("" + (i+1)));
-            line2.add(getSpace("" + (i+2)));
-            line3.add(getSpace("" + (i+3)));
+	    int index = i * 3;
+            line1.add(getSpace("" + (index+1)));
+            line2.add(getSpace("" + (index+2)));
+            line3.add(getSpace("" + (index+3)));
         }
         for(int i = 1; i < 19; i++){
             firstHalf.add(getSpace("" + i));
