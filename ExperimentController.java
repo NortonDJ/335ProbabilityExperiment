@@ -219,7 +219,7 @@ public class ExperimentController
             balances.add(r.getBalance());
         }
         System.out.println("Simulation over after " + trials + " trials.");
-        System.out.println(balances);
+        //System.out.println(balances);
         double average = average(balances);
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
@@ -282,7 +282,7 @@ public class ExperimentController
             balances.add(r.getBalance());
         }
         System.out.println("Simulation over after " + trials + " trials.");
-        System.out.println(balances);
+        //System.out.println(balances);
         double average = average(balances);
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
@@ -346,7 +346,7 @@ public class ExperimentController
             balances.add(r.getBalance());
         }
         System.out.println("Simulation over after " + trials + " trials.");
-        System.out.println(balances);
+        //System.out.println(balances);
         double average = average(balances);
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
@@ -410,7 +410,7 @@ public class ExperimentController
             balances.add(r.getBalance());
         }
         System.out.println("Simulation over after " + trials + " trials.");
-        System.out.println(balances);
+        //System.out.println(balances);
         double average = average(balances);
         System.out.println("Average balance for casino: " + average);
         System.out.println("Variance: " + variance(balances, average));
