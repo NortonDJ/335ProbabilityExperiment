@@ -87,7 +87,7 @@ public class Gui_custom {
                     number_of_allowance = Integer.parseInt(allowanceNumber.getText());
                     name_of_wheel = wheelFileName.getText();
                     name_of_odd = oddFileName.getText();
-                    ec.run(number_of_trials, number_of_students, number_of_students, name_of_wheel, name_of_odd);
+                    ec.run(number_of_trials, number_of_students, number_of_allowance, name_of_wheel, name_of_odd);
                 }catch(Exception ex){
                     JOptionPane.showMessageDialog(frame, "Please Enter Valid Number.");
                 }
